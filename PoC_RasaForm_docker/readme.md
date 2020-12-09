@@ -12,14 +12,26 @@
 # Preparación del entorno de ejecución de chatbot en RASA 2.0
 
 ## 1. Instalación de Virtualenv
+
 ```sh
 pip install virtualenv
 ```
 
-## 2.  Preparación del entorno virtual
+## 2.  Preparación del entorno virtual 
+
+- En macOSX
 En el directorio donde tengamos los ficheros descargados:
+
 ```virtualenv venv```
+
 ```./venv/bin/activate``` 
+
+- En windows
+En el directorio donde tengamos los ficheros descargados:
+
+```cd venv/Scripts/```
+
+```activate```
 
 Siempre que ejecutemos algo en rasa tenemos que tener el entorno activo -> Recuerda que para desactivarlo es simplemente el comando deactivate.
 
@@ -31,6 +43,7 @@ Para identificarlo, ver el encabezado del shell y vemos que comienza como se lla
 
 ## 3. Instalación de rasa
 ```pip install rasa==2.0.2```
+
 ```pip  install —-use-feature=2020-resolver rasa==2.0.2```
 
 Comprobación de la versión de rasa:
@@ -45,6 +58,7 @@ Python Path      : /Users/corodri/Downloads/Rasa_ExampleChatbot_FP_Intership-mas
 ```
 
 ## 4. Puesta a punto del entorno
+
 ```rasa train```
 
 
@@ -52,11 +66,25 @@ Python Path      : /Users/corodri/Downloads/Rasa_ExampleChatbot_FP_Intership-mas
 
 En otra terminal y en el mismo directorio:
 
-```./venv/bin/activate```
+- En macOSX
+En el directorio donde tengamos los ficheros descargados:
+
+```virtualenv venv```
+
+```./venv/bin/activate``` 
+
+- En windows
+En el directorio donde tengamos los ficheros descargados:
+
+```cd venv/Scripts/```
+
+```activate```
+
 
 En mi caso tengo que instalar algunas librerías primero para que funcionen las custom actions
 
 ```pip3 install codaio && pip3 install requests && pip3 install typing_extensions``` 
+
 ```rasa run actions```
 
 ## 6. Comprobación de correcto funcionamiento
