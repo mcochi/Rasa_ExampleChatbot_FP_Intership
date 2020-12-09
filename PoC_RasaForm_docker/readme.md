@@ -29,6 +29,8 @@ En el directorio donde tengamos los ficheros descargados:
 - En windows
 En el directorio donde tengamos los ficheros descargados:
 
+```virtualenv venv```
+
 ```cd venv/Scripts/```
 
 ```activate```
