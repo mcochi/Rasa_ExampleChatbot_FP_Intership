@@ -1,0 +1,88 @@
+version: "2.0"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - inform_request_restaurant
+  - out_of_scope
+  - resume
+
+entities:
+  - cuisine
+  - number 
+ 
+responses:
+  utter_greet:
+  - text: "Hey! Wellcome to Marcos Cochi's Restaurant. We love to see you here. Do you want to book a table?"
+
+  utter_cheer_up:
+  - text: "Here is something to cheer you up:"
+    image: "https://i.imgur.com/nGF1K8f.jpg"
+
+  utter_did_that_help:
+  - text: "Did that help you?"
+
+  utter_happy:
+  - text: "Great, carry on!"
+
+  utter_goodbye:
+  - text: "Bye"
+
+  utter_iamabot:
+  - text: "I am a bot, powered by Rasa."
+
+  utter_ask_restaurant_form_cuisine_slot:
+  - text: "What type of cuisine your are interested on?"
+
+  utter_ask_restaurant_form_num_people:
+  - text: "How many people are going to dinner?"
+  
+  utter_slots_values:
+  - text: "Here's the resume: \n
+          - Cuisine: {cuisine_slot}\n
+          - Num_people: {num_people}"
+
+
+### Defining a form
+# Define a form by adding it to the forms section in your domain.
+# The name of the form is also the name of the action which can use in stories or rules
+# to handle executions. You also need to define slot mappings for each slot.
+# The following example from restaurant_form will fill the slot cuisine fron an extracted
+# entity cuisine and slot num_people from entity number
+slots:
+  cuisine_slot:
+    type: unfeaturized
+  num_people: 
+    type: unfeaturized
+
+actions:
+- validate_restaurant_form
+- action_launch_hello_world
+- action_call_api
+- action_post_dinner_coda
+
+forms:
+  restaurant_form:
+    cuisine_slot:
+      - type: from_entity
+        entity: cuisine
+    num_people:
+      - type: from_entity
+        entity: number
+      
+
+
+# Once the form action gets called for the first time, the form gets activated
+# and will prompt the user for the next required slot value. It does this by looking
+# for a response called utter_ask_{form_name}_{slot_name} or utter_ask_{slot_name} if the former
+# isn't found. Make sure to define these responses in your domain file for each required slot
+
+  session_config:
+  session_expiration_time: 1
+  carry_over_slots_to_new_session: true
+

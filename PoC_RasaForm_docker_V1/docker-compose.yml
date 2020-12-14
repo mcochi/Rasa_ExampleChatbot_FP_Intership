@@ -1,0 +1,19 @@
+version: '2.2'
+services:
+    rassachatbot:
+        build: .
+        command: bash -c 
+            "sh start_services.sh"
+        volumes:
+            - .:/app
+        restart: always
+        networks:
+          - internal_net
+        ports: 
+            - 5005:5005
+networks:
+    internal_net:
+
+
+    
+    
