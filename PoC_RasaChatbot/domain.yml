@@ -41,11 +41,19 @@ responses:
 
   utter_ask_restaurant_form_num_people:
   - text: "How many people are going to dinner?"
+
+  utter_ask_nombre:
+  - text: "What's your name? (only name please)"
+
+  utter_ask_allergic:
+  - text: "Are you allergic? Yes/No"
   
   utter_slots_values:
   - text: "Here's the resume: \n
+          - Name: {nombre}\n
           - Cuisine: {cuisine_slot}\n
-          - Num_people: {num_people}"
+          - Num_peopel: {num_people}\n
+          - Allergic: {allergic}"
 
 
 ### Defining a form
@@ -59,6 +67,10 @@ slots:
     type: unfeaturized
   num_people: 
     type: unfeaturized
+  nombre:
+    type: unfeaturized
+  allergic:
+    type: unfeaturized
 
 actions:
 - validate_restaurant_form
@@ -68,13 +80,17 @@ actions:
 
 forms:
   restaurant_form:
+    nombre:
+      - type: from_text
     cuisine_slot:
       - type: from_entity
         entity: cuisine
     num_people:
       - type: from_entity
         entity: number
-      
+    allergic: 
+      - type: from_text
+        
 
 
 # Once the form action gets called for the first time, the form gets activated
@@ -85,4 +101,3 @@ forms:
   session_config:
   session_expiration_time: 1
   carry_over_slots_to_new_session: true
-

@@ -38,6 +38,24 @@ class ValidateRestaurantForm(FormValidationAction):
             dispatcher.utter_message(text="Sorry but we haven't got that class of food. We have Caribbean, Chinese and French food")
             return {"cuisine_slot": None}
 
+    def validate_allergic(
+        self,
+        slot_value: Any,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: DomainDict,
+    ) -> Dict[Text, Any]:
+        print('Hola!!!')
+        print(slot_value)
+        if(slot_value.lower() == 'yes'):
+            return {"allergic": True}
+        else: 
+            if(slot_value.lower()=='no'):
+                return {"allergic": False}
+            else:
+                dispatcher.utter_message(text="Sorry, but I didn't understand, can you please repeat the anwser (yes or no)?")
+                return {"allergic": None}
+
 # Testing Custom Actions
 class ActionLaunchHelloWorld(Action):
     def name(self) -> Text:
@@ -61,9 +79,10 @@ class ActionCallApi(Action):
         dispatcher: CollectingDispatcher,
         tracker: Tracker,
         domain: Dict[Text,Any]) -> List[Dict[Text,Any]]:
-        
+        ejemplo = tracker.latest_message['intent']['name']
+        #print(ejemplo)
         #r = requests.get('http://192.168.1.34:3010')
-        dispatcher.utter_message(text='r.text')
+        #dispatcher.utter_message(ejemplo)
         return[]
 
 # Testing store data on Coda

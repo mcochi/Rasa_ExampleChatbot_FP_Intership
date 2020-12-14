@@ -16,6 +16,7 @@ nlu:
     - goodmorning
     - goodevening
     - good afternoon
+    - Hi, great to see youu!!
 
 - intent: goodbye
   examples: |
@@ -30,6 +31,8 @@ nlu:
     - see you around
     - bye bye
     - see you later
+    - cu later
+    - I hope will see you again
 
 - intent: affirm
   examples: |

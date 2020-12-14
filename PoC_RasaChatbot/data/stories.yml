@@ -47,3 +47,13 @@ stories:
   - intent: goodbye
   - action: utter_goodbye
   - action: action_restart
+
+- story: Sad Survey Path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: deny
+  - action: action_launch_hello_world
+  - action: action_call_api
+  - action: utter_goodbye
+  - action: action_restart
